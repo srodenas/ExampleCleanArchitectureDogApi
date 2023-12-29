@@ -2,6 +2,7 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.data.models
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.service.DogService
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Repository
 
 /*
 Clase que devuelve los datos, a partir de un acceso al servicio.
@@ -23,6 +24,7 @@ class DogRepository : DogRepositoryInterface{
         dataSource.forEach{ imageDog->
             mutableDogs.add(Dog("dog", imageDog))
         }
-        return mutableDogs
+        Repository.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
+        return Repository.dogs
     }
 }
