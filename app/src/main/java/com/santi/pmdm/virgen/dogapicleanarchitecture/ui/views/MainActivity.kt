@@ -2,6 +2,7 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.ui.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,9 +23,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        registerLiveData()
-        init()
+        registerLiveData()  //Observamos cambios.
+        loadDada() //se cargan los datos.
+        initRecyclerView()  //inicializamos el recyclerView.
         //test()
+    }
+
+    private fun loadDada() {
+        dogViewModel.list()  //simulamos un evento para iniciar la carga de datos desde el viewmodel
+
     }
 
     /*
@@ -48,15 +55,16 @@ class MainActivity : AppCompatActivity() {
         dogViewModel.progressBarLiveData.observe(
             this, { visible ->
                 binding.progressBar.isVisible = visible
-            }
+                Log.i("TAG-DOGS","ProgressBar esta $visible")            }
         )
+
 
     }
 
     /*
     Pone todo en funcionamiento
      */
-    private fun init(){
+    private fun initRecyclerView(){
         binding.myRecyclerPpal.layoutManager = LinearLayoutManager(this)
         adapter = DogAdapter()
     }
