@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -59,4 +61,13 @@ dependencies {
     // Facilita mvvm en el Activity
     implementation "androidx.activity:activity-ktx:1.2.2"
 
+    //modificación para inyección de dependencias
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
 }
