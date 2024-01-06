@@ -13,11 +13,14 @@ import com.pmdm.virgen.dogapi.ui.adapter.DogAdapter
 import com.santi.pmdm.virgen.dogapicleanarchitecture.R
 import com.santi.pmdm.virgen.dogapicleanarchitecture.databinding.ActivityMainBinding
 import com.santi.pmdm.virgen.dogapicleanarchitecture.ui.modelview.DogViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 /*
 Hasta ahora tenemos:
 1.- Cargamos todos las razas
 2.- Buscamos por raza.
  */
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: DogAdapter
@@ -68,7 +71,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         /*
         Observamos un cambio en el search.
          */
-        dogViewModel.search.observe(  //el campo search, ha cambiado
+        dogViewModel.breed.observe(  //el campo search, ha cambiado
             this, { bread->
                 dogViewModel.listForBreed(bread)  //cambiamos los datos.
                 hideKeyBoard()

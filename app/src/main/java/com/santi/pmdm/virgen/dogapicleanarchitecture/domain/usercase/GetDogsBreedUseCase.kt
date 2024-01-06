@@ -2,14 +2,19 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogRepository
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
+import javax.inject.Inject
 
 /*
-recibo el repositorio como privado y la raza a filtar.
-Invoca al repositorio de datos, por filtro.
+Con @Inyect constructor(), estamos diciendo que esa clase ya se puede inyectar.
+Necesito la raza para poder invocar al caso de uso.
  */
-class GetDogsBreedUseCase(val dogRepository : DogRepository,
-                          val breed: String) {
+class GetDogsBreedUseCase @Inject constructor(){
+    private var breed: String = ""
+    private val dogRepository = DogRepository()
 
+    fun setBreed(breed: String){
+        this.breed = breed
+    }
     operator fun invoke() : List<Dog>{
         return dogRepository.getBreedDogs(breed)
     }

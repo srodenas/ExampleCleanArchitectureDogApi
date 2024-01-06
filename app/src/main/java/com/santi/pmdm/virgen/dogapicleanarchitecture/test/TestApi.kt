@@ -10,8 +10,8 @@ class TestApi {
     companion object {
 
          fun testDogApi() {
-             var useCase = GetDogsUseCase(DogRepository())
-             var useCaseBreed = GetDogsBreedUseCase(DogRepository(),"raza1")
+             var useCase = GetDogsUseCase()
+             var useCaseBreed = GetDogsBreedUseCase("raza1")
              val listDogs = useCaseBreed() //invoca a su método definido como operator fun invoke()
 
              listDogs?.forEach() {
