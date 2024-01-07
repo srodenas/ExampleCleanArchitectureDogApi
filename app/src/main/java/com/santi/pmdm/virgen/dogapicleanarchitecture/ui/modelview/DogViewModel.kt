@@ -29,8 +29,8 @@ Con la anotación siguiente:
 1.- Preparamos para que podamos inyectar aquí.
 2.- Modificamos el constructor de nuestro DogViewModel con
 los objetos que necesitamos.
-3.- Necesito un Provider, porque dicha clase que debe inyectar, antes de crearse
-el objeto, necesito parsarle un parámetro. Cada vez que llamamos al método get() dentro
+3.- Necesito un Provider para el segundo caso de uso, porque dicha clase que debe inyectar,
+antes de crearse el objeto, necesito parsarle un parámetro. Cada vez que llamamos al método get() dentro
 del Provider, se está creando una nueva instancia de GetDogsBreedUseCase. Hilt, creará inyecta
 el Proveedor de GetDogsBreedUseCase, y Hilt creará autormáticamente un objeto de tipo GetDogsBreedUseCAse
 cuando se llame al método get del provider. De esta forma, aseguramos que se cumple todo el ciclo de vida.
