@@ -6,11 +6,13 @@ import javax.inject.Inject
 
 /*
 Con @Inyect constructor(), estamos diciendo que esa clase ya se puede inyectar.
-Necesito la raza para poder invocar al caso de uso.
+Necesito la raza.
  */
-class GetDogsBreedUseCase @Inject constructor(){
+class GetDogsBreedUseCase @Inject constructor(
+    private val dogRepository: DogRepository
+){
     private var breed: String = ""
-    private val dogRepository = DogRepository()
+    //private val dogRepository = DogRepository()
 
     fun setBreed(breed: String){
         this.breed = breed

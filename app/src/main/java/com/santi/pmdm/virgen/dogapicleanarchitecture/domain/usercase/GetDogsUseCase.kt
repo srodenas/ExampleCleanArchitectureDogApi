@@ -6,12 +6,15 @@ import javax.inject.Inject
 
 /*
 Con @Inyect constructor(), estamos diciendo que esa clase ya se puede inyectar.
+También inyectaremos el repositorio
  */
 
 
-class GetDogsUseCase @Inject constructor() {
+class GetDogsUseCase @Inject constructor(
+    private val dogRepository: DogRepository
+) {
 
-    private val dogRepository = DogRepository()
+   // private val dogRepository = DogRepository()
     operator fun invoke(): List<Dog>?{
         return dogRepository.getDogs()
     }
