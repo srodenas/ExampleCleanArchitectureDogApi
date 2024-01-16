@@ -14,6 +14,7 @@ import com.santi.pmdm.virgen.dogapicleanarchitecture.R
 import com.santi.pmdm.virgen.dogapicleanarchitecture.databinding.ActivityMainBinding
 import com.santi.pmdm.virgen.dogapicleanarchitecture.ui.modelview.DogViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /*
 Hasta ahora tenemos:
@@ -22,6 +23,8 @@ Hasta ahora tenemos:
  */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+
+    @Inject lateinit var testApi: TestApi
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: DogAdapter
     val dogViewModel: DogViewModel by viewModels() //tiene que ser constante.
@@ -123,6 +126,6 @@ Método que cierra el teclado. MUY INTERESANTE...
     }
 
     private fun test() {
-        TestApi.testDogApi()
+        testApi.testDogApi()
     }
 }

@@ -1,10 +1,7 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.data.models
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.service.DogService
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Repository
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /*
 Clase que devuelve los datos, a partir de un acceso al servicio.
@@ -14,9 +11,9 @@ Esta clase, se encargará de adaptar dichos datos a los que necesite
 la aplicación.
  */
 
-class DogRepository @Inject constructor(
+class DogRepositoryDaoDao @Inject constructor(
     private val service : DogService
-) : DogRepositoryInterface{
+) : DogRepositoryInterfaceDao{
     //private val service : DogService = DogService()
 
     /*

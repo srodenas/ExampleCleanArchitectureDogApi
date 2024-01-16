@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.santi.pmdm.virgen.dogapicleanarchitecture.R
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Repository
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.Repository
 
 
 class DogAdapter : RecyclerView.Adapter<ViewHDog>() {

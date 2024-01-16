@@ -1,8 +1,6 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.data.models
 
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
-
-interface DogRepositoryInterface {
+interface DogRepositoryInterfaceDao {
     fun getDogs() : List<Dog>
     fun getBreedDogs(breed:String) : List<Dog>
 }

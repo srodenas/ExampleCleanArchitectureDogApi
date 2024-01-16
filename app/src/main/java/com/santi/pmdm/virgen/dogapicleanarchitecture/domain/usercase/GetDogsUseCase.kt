@@ -1,7 +1,7 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase
 
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogRepository
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogRepositoryDaoDao
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.Dog
 import javax.inject.Inject
 
 /*
@@ -11,11 +11,11 @@ También inyectaremos el repositorio
 
 
 class GetDogsUseCase @Inject constructor(
-    private val dogRepository: DogRepository
+    private val dogRepositoryDao: DogRepositoryDaoDao
 ) {
 
    // private val dogRepository = DogRepository()
     operator fun invoke(): List<Dog>?{
-        return dogRepository.getDogs()
+        return dogRepositoryDao.getDogs()
     }
 }

@@ -3,7 +3,7 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.ui.modelview
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +13,9 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 /*
+* Autor: santiago rodenas herráiz
+* Email: srodher115@g.educaand.es
+
 viewModelScope.launch, es la forma de crear una corrutinas. Son tareas
 que se hacen en segundo plano, cuando requieren de operaciones asíncronas.
 Es conveniente utilizarlas, para no bloquear a la aplicación. En este ejemplo,
