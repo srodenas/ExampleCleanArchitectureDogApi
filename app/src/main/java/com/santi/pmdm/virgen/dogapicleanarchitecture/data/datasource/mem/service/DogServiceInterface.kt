@@ -1,4 +1,4 @@
-package com.santi.pmdm.virgen.dogapicleanarchitecture.data.service
+package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.service
 
 
 /*

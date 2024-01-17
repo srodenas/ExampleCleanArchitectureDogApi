@@ -1,4 +1,4 @@
-package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource
+package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem
 
 /*
 Fuente de datos en memoria.

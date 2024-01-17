@@ -1,7 +1,7 @@
 package com.pmdm.virgen.dogapi.test
 
 import android.util.Log
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
 import javax.inject.Inject

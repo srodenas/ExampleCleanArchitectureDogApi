@@ -1,6 +1,7 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.application
 
 import android.app.Application
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.DatabaseDogs
 import dagger.hilt.android.HiltAndroidApp
 
 /*
@@ -14,4 +15,5 @@ de nuestro proyecto, podamos hacer uso de la inyección de dependencias.
  */
 @HiltAndroidApp
 class DogApiApplication : Application() {
+
 }

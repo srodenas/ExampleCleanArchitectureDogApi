@@ -1,14 +1,13 @@
-package com.santi.pmdm.virgen.dogapicleanarchitecture.data.service
+package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.service
 
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.Dogs
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.Dogs
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /*
 Esta clase, simula el servicio de acceso a los datos nativos.
  */
 
-class DogService @Inject constructor(): DogServiceInterface{
+class DogService @Inject constructor(): DogServiceInterface {
     override fun getDogs(): List<Pair<String, String>> {
         return Dogs.dogs
     }

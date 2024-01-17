@@ -3,7 +3,7 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.ui.modelview
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
