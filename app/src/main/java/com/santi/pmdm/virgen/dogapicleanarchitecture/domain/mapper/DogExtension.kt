@@ -15,3 +15,8 @@ fun DogEntity.toDomain(): DogModel {
 fun Dog.toDomain(): DogModel {
     return DogModel(breed = this.breed, image = this.image)
 }
+
+fun DogModel.toDomain(): DogEntity{
+    return DogEntity(breed = breed, image = image)
+}
+

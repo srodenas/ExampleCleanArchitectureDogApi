@@ -43,28 +43,38 @@ class DogRepository @Inject constructor(
     override fun getBreedDogs(breed: String): List<DogModel> {
         var mutableDogs : MutableList<DogModel> = mutableListOf()
         val dataSource = service.getBreedDogs(breed)
-       // var id: Int = 0
+
         dataSource.forEach{ dog->
             mutableDogs.add(DogModel(dog.first, dog.second))
-         //   id++
+
         }
         Repository.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
         return Repository.dogs
     }
 
-    override fun getDogsEntity(): List<DogModel> {
-        val listEntity : List<DogEntity> = dogDao.getAll()
-        val listDogModel: List<DogModel> = listEntity.map { it.toDomain()}
-       return listDogModel
+    override suspend fun getDogsEntity(): List<DogModel> {
+        val listEntity : List<DogEntity> = dogDao.getAll()  //aquí tengo todos los datos Dog
+        Repository.dogs = listEntity.map { it.toDomain()}  //convertimos a DogModel (dominio) y lo cargamos en memoria
+       return Repository.dogs
 
     }
 
-    override fun getBreedDogsEntity(breed: String): List<DogModel> {
-        val listEntity : List<DogEntity> = dogDao.getAll()
-        val listDogModel: List<DogModel> = listEntity.map { it.toDomain()}
-        return listDogModel
+    override suspend fun getBreedDogsEntity(breed: String): List<DogModel> {
+        val listEntity : List<DogEntity> = dogDao.getDogsByBreed(breed)  //aquí tengo todos los datos Entity filtrados
+        Repository.dogs = listEntity.map { it.toDomain()}  //convertimos a DogModel (dominio) y lo cargamos en memoria
+        return Repository.dogs
 
     }
 
+    /*
+    Necesito un método que inserte una lista de Entity en la BBDD.
+     */
+    override suspend fun insertBreedEntitytoDatabase(listEntity : List<DogEntity>) {
+        dogDao.insertAllDog(listEntity)
+    }
+
+    override suspend fun deleteDatabase() {
+        dogDao.deleteAll()
+    }
 
 }

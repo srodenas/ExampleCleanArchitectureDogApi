@@ -30,13 +30,24 @@ interface DogDao {
 
     //Listado de todos los Dogs
     @Query ("SELECT * FROM dogentity")
-    fun getAll(): List<DogEntity>
+    suspend fun getAll(): List<DogEntity>
 
     //Listado de todos los Dogs dada la raza
     @Query ("SELECT * FROM dogentity WHERE breed = :breed")
-    fun getDogsByBreed(breed: String): List<Dog>
+    suspend fun getDogsByBreed(breed: String): List<DogEntity>
 
-    //Insertamos uno o varios Dogs. Utilizaremos corrutinas.
+    /*Insertamos uno o varios Dogs. Utilizaremos corrutinas.
+    Ejemplo de utilización del método sería  dao.insertDog(dog1, dog2, dog3)*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg dogs : DogEntity)
+    suspend fun insertDog(vararg dogs : DogEntity)
+
+
+    /*Insertamos una lista de Dogs. Utilizaremos corrutinas.
+    Ejemplo de utilización del método sería  dao.insertDog(dogs), siendo dogs :List<DogEntity>*/
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllDog(dogs: List<DogEntity>)
+
+    @Query ("DELETE FROM dogentity")
+    suspend fun deleteAll()
+
 }

@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogModel
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.DeleteDogsFromDataBaseUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,12 +43,13 @@ cuando se llame al método get del provider. De esta forma, aseguramos que se cu
 @HiltViewModel
 class DogViewModel @Inject constructor(
     private val useCaseList : GetDogsUseCase,
-    private val getDogsBreedUseCaseProvider: Provider<GetDogsBreedUseCase>
+    private val getDogsBreedUseCaseProvider: Provider<GetDogsBreedUseCase>,
+    private val userCaseDeleteDatabase : DeleteDogsFromDataBaseUseCase
 
 ): ViewModel() {
 
 
-    var dogListLiveData = MutableLiveData<List<Dog>>() //repositorio observable
+    var dogListLiveData = MutableLiveData<List<DogModel>>() //repositorio observable
     var progressBarLiveData = MutableLiveData<Boolean> () //progressbar observable
     var breed = MutableLiveData<String>() //para el campo search con la raza.
 
@@ -60,9 +63,9 @@ class DogViewModel @Inject constructor(
     fun list() {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
-            delay(2000)
+            delay(500)
            // useCaseList = GetDogsUseCase()  //Ya no me hace falta, porque se crea por Hilt.
-            var data : List<Dog> ? = useCaseList()  //aquí se invoca y se obtienen los datos.
+            var data : List<DogModel> ? = useCaseList()  //aquí se invoca y se obtienen los datos.
             data.let {
                 dogListLiveData.value = it  //notifico
                 progressBarLiveData.value = false  //notifico
@@ -78,15 +81,25 @@ class DogViewModel @Inject constructor(
     fun listForBreed(breed: String) {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
-            delay(2000)
+            delay(500)
            // useCaseBreedList = GetDogsBreedUseCase( breed)
             val useCaseBreedList = getDogsBreedUseCaseProvider.get()  //aquí se crea realmente la instancia dento del Provider.
             useCaseBreedList.setBreed(breed) //Aquí le paso el parámetro que necesitaba el caso de uso.
-            var data : List<Dog> ? = useCaseBreedList()  //aquí se invoca y se obtienen los datos.
+            var data : List<DogModel> ? = useCaseBreedList()  //aquí se invoca y se obtienen los datos.
             data.let {
                 dogListLiveData.value = it  //notifico
                 progressBarLiveData.value = false  //notifico
             }
+        }
+    }
+
+    /*
+    Este caso de uso, es para eliminar los datos de la base de datos.
+     */
+    fun delete() {
+        viewModelScope.launch {
+            userCaseDeleteDatabase() //si invocamos para borrar la base de datos.
+            list() //Vuelvo a cargar los datos desde Dogs.
         }
     }
 

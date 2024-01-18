@@ -2,7 +2,8 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models
 
 
 /*
-Este será nuestro modelo de datos.
+Este será nuestro repositorio en memoria.
+Puesto que no vamos a modificarlo, no es necesario un MutableList.
  */
 class Repository {
     companion object{
