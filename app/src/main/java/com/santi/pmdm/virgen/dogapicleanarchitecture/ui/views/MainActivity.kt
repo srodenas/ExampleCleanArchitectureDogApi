@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 /*
 @author santiago rodenas herráiz
-srodher115@g.educaand.es
+@Email srodher115@g.educaand.es
 
 La idea de esta versión es la siguiente:
 1.- Tenemos dos acceso a datos (Uno en Dogs, simulando por ejemplo alguna api, y

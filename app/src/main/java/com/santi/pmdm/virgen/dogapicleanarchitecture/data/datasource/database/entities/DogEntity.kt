@@ -5,10 +5,15 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /*
-Utilizaré la misma clase Dog, para que room la utilice y cree la tabla de la BBDD.
+Utilizaré una nueva entidad. No modificará la de mem, porque tienen que convivir.
 Añadimos un nuevo atributo específico para Room llamado id. La opción autoGenerate = true indica
 que Room generará la clave primaria automáticamente. No hace falta que se lo insertemos nosotros.
 */
+/*
+@author santiago rodenas herráiz
+@Email srodher115@g.educaand.es
+*/
+
 @Entity
 data class DogEntity(
         @PrimaryKey(autoGenerate = true)
