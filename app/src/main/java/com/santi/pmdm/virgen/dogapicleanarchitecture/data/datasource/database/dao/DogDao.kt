@@ -24,6 +24,10 @@ indicar que puede aceptar no sólo un Dog, sino varios Dog. Por ejemplo:
     dogDao.insertAll(dog1, dog2)
     En caso de conficto, donde queramos insertar el mismo Dog porque tienen mismo ID, lo que le decimos es que lo Reemplace.
  */
+/*
+@author santiago rodenas herráiz
+@Email srodher115@g.educaand.es
+*/
 
 @Dao
 interface DogDao {

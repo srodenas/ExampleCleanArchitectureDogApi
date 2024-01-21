@@ -12,7 +12,7 @@ Room es un conjunto de clases, que nos proporciona una abstracción a una base d
 nos ofrece la posibilidad de interactuar con ella, sin saber cómo puñetas recorremos los registros dada una Query, o como
 mapeamos un insert dado un objeto Dog, etc. Room ya se encarga directamente de todo. Para ello, necesitamos:
 
-1.- Nuestras entidades. Como tenemos una sóla llamada Dog, pues genial. Nos aseguramos que estén bien anotadas con @Entity, junto
+1.- Nuestras entidades. DogEntity. Nos aseguramos que estén bien anotadas con @Entity, junto
 a las claves primarias que necesitemos.
 2.- Un Dao donde definimos las operaciones con la Base de datos y trabajando sólo con Clases que serán entidades y al mismo tiempo
 serán tablas en la BBDD. Esto lo abstraemos. Recordar que tenemos @Insert, @Delete, @Update y @Query es para especificar alguna operación
@@ -34,11 +34,12 @@ dogDao, devuelve un objeto que implemente de DogDao (define los métodos de acce
 En resumida cuentas. Lo que hacemos con abstract fun dogDao(): DogDao, es decirle a Room, que nos implemente él mismo los métodos
 que hemos definido en la interfaz DogDao, para que podamos acceder a realizar las consultas. El objeto que nos devolverá, lo crea
 automáticamente Room del tipo DogDao.
-
-
  */
 
-
+/*
+@author santiago rodenas herráiz
+@Email srodher115@g.educaand.es
+ */
 @Database(entities = [DogEntity::class], version = 1)
 
 abstract class DatabaseDogs : RoomDatabase(){
