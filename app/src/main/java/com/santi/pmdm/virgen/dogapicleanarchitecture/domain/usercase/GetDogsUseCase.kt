@@ -35,7 +35,6 @@ class GetDogsUseCase @Inject constructor(
           3.- Con los datos mapeados a DogEntity, ahora lo insertaremos en la BBDD.
            */
        if (Repository.dogs.isEmpty()){
-
            Repository.dogs = dogRepositoryDao.getDogs() //Aquí tengo los datos de memoria.
            val dataDogEntity : List<DogEntity> = Repository.dogs.map { it.toDomain() }  //lo mapeamos a Entity.
            dogRepositoryDao.insertBreedEntitytoDatabase(dataDogEntity)

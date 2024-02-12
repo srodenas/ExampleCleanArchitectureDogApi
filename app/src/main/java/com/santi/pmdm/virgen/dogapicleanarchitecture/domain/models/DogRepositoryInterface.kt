@@ -12,9 +12,14 @@ interface DogRepositoryInterface {
      */
     suspend fun getDogsEntity() : List<DogModel>
     suspend fun getBreedDogsEntity(breed:String) : List<DogModel>
-
-
     suspend fun insertBreedEntitytoDatabase(listEntity : List<DogEntity>)
-
     suspend fun deleteDatabase()
+
+    /*
+    Operaciones con network
+     */
+    suspend fun getDogsApi() : List<DogModel>
+    suspend fun getBreedDogsApi(breed: String) : List<DogModel>
+
+
 }

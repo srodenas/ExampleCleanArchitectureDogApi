@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogModel
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.DeleteDogsFromDataBaseUseCase
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -44,7 +42,9 @@ cuando se llame al método get del provider. De esta forma, aseguramos que se cu
 class DogViewModel @Inject constructor(
     private val useCaseList : GetDogsUseCase,
     private val getDogsBreedUseCaseProvider: Provider<GetDogsBreedUseCase>,
-    private val userCaseDeleteDatabase : DeleteDogsFromDataBaseUseCase
+    private val userCaseDeleteDatabase : DeleteDogsFromDataBaseUseCase,
+    private val useCaseApiList : GetDogsFromApiUseCase,
+    private val getDogsBreedApiUseCaseProvider : Provider<GetDogsBreedFromApiUseCase>
 
 ): ViewModel() {
 
@@ -63,9 +63,10 @@ class DogViewModel @Inject constructor(
     fun list() {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
-            delay(500)
+         //   delay(500)
            // useCaseList = GetDogsUseCase()  //Ya no me hace falta, porque se crea por Hilt.
-            var data : List<DogModel> ? = useCaseList()  //aquí se invoca y se obtienen los datos.
+
+            var data : List<DogModel> ? = useCaseApiList()  //aquí se invoca y se obtienen los datos.
             data.let {
                 dogListLiveData.value = it  //notifico
                 progressBarLiveData.value = false  //notifico
@@ -81,11 +82,11 @@ class DogViewModel @Inject constructor(
     fun listForBreed(breed: String) {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
-            delay(500)
+      //      delay(500)
            // useCaseBreedList = GetDogsBreedUseCase( breed)
-            val useCaseBreedList = getDogsBreedUseCaseProvider.get()  //aquí se crea realmente la instancia dento del Provider.
-            useCaseBreedList.setBreed(breed) //Aquí le paso el parámetro que necesitaba el caso de uso.
-            var data : List<DogModel> ? = useCaseBreedList()  //aquí se invoca y se obtienen los datos.
+            val useCaseBreedApiList = getDogsBreedApiUseCaseProvider.get()  //aquí se crea realmente la instancia dento del Provider.
+            useCaseBreedApiList.setBreed(breed) //Aquí le paso el parámetro que necesitaba el caso de uso.
+            var data : List<DogModel> ? = useCaseBreedApiList()  //aquí se invoca y se obtienen los datos.
             data.let {
                 dogListLiveData.value = it  //notifico
                 progressBarLiveData.value = false  //notifico

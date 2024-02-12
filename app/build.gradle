@@ -71,6 +71,13 @@ dependencies {
     // Si estás utilizando Kotlin coroutines
     implementation "androidx.room:room-ktx:2.4.2"
 
+    //dependencias de retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    //Convertirá nuestro Gson a data class. Tendrá anotaciones de Serialización.
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+
 }
 
 // Allow references to generated code

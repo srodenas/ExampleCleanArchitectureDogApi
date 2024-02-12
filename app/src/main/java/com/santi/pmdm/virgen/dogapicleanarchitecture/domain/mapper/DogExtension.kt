@@ -2,6 +2,7 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.mapper
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.entities.DogEntity
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.network.models.DogsResponse
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogModel
 
 
@@ -19,4 +20,5 @@ fun Dog.toDomain(): DogModel {
 fun DogModel.toDomain(): DogEntity{
     return DogEntity(breed = breed, image = image)
 }
+
 
