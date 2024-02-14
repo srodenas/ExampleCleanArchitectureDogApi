@@ -20,12 +20,12 @@ Interfaz que define los servicios a nuestra API.
 interface DogApiServiceInterface {
 
     //extensión de la url con list/all
-    @GET("list/all")
+    @GET("breeds/list/all")
     suspend fun getAllDogsApi() : Response<DogsResponse>
 
 
     //hay que modificar parte de la url de manera dinámica y la suministramos mediante esta llamada al servicio.
-    @GET("{breed}/images")
+    @GET("breed/{breed}/images")
     suspend fun getAllImagesApi(@Path("breed") breed:String): Response<DogsBreedImagesResponse>
 
 }

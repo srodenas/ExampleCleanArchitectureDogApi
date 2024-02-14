@@ -11,7 +11,7 @@ class GetDogsFromApiUseCase @Inject constructor(
     val dogRepository: DogRepository
 ){
 
-    suspend operator fun invoke() : List<DogModel>?{
+   /* suspend operator fun invoke() : List<DogModel>?{
         Repository.dogs = dogRepository.getDogsEntity()
         if (Repository.dogs.isEmpty()){
             Repository.dogs = dogRepository.getDogsApi()
@@ -19,6 +19,18 @@ class GetDogsFromApiUseCase @Inject constructor(
             dogRepository.insertBreedEntitytoDatabase(dataDogEntity)
 
         }
+        return Repository.dogs
+    }
+
+    */
+   /*
+         Este caso de uso, es para invocar las razas dentro de un spinner.
+          */
+    suspend operator fun invoke() : List<DogModel>?{
+
+        Repository.dogs = dogRepository.getDogsApi()
+        val dataDogEntity : List<DogEntity> = Repository.dogs.map { it.toDomain() }  //lo mapeamos a Entity.
+
         return Repository.dogs
     }
 }

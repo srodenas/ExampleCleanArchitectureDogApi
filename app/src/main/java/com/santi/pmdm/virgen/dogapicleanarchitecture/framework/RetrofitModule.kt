@@ -19,11 +19,11 @@ object RetrofitModule{
     única instancia del Servicio.
      */
 
-    private const val URL_BASE_RETROFIT = "http://dog.ceo/api/breed/"
+    private const val URL_BASE_RETROFIT = "https://dog.ceo/api/"
 
     @Singleton
     @Provides
-    fun providesRetrofit(): Retrofit = Retrofit
+    fun provideRetrofit(): Retrofit = Retrofit
         .Builder()
         .baseUrl(URL_BASE_RETROFIT)
         .addConverterFactory(GsonConverterFactory.create())
@@ -32,7 +32,7 @@ object RetrofitModule{
 
     @Singleton
     @Provides
-    fun providesServiceApi(retrofit : Retrofit): DogApiServiceInterface =
+    fun provideServiceApi(retrofit : Retrofit): DogApiServiceInterface =
         retrofit
         .create(DogApiServiceInterface::class.java)
 }

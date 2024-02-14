@@ -26,6 +26,8 @@ lo que devuelvo es un objeto Result de la respuesta. ¿por qué?
     de la excepción que se ha podido producir. No queremos capturar la excepción y tampoco propagarlo, sino
     tratar la excepción como un aviso de error. NO LANZAMOS LA EXCEPCIÓN, SÓLO QUIERO ENCAPSULAR EL TIPO DE ERROR.
 
+    Al ser @Singleton, Hilt sólo creará una instancia.
+
  */
 @Singleton
 class DogApiService @Inject constructor(val apiService: DogApiServiceInterface){

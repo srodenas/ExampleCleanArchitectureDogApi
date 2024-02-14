@@ -100,7 +100,8 @@ class DogViewModel @Inject constructor(
     fun delete() {
         viewModelScope.launch {
             userCaseDeleteDatabase() //si invocamos para borrar la base de datos.
-            list() //Vuelvo a cargar los datos desde Dogs.
+          //  list() //Vuelvo a cargar los datos desde Dogs.
+            listForBreed("hound")
         }
     }
 

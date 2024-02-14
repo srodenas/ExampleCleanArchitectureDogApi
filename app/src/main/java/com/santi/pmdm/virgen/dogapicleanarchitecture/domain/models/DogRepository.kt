@@ -79,6 +79,10 @@ class DogRepository @Inject constructor(
     /*
     Este método, recibe la respuesta de Retrofit y debe
     encapsular los datos en DogModel
+    Realizamos la llamada al servicio de todos los Dogs, y testeamos nuestro Result
+    En caso de onSuccess, retornamos los datos mapeados a DogModel. Utilizamos el método convertMapToListDogs
+    En caso de onFailure, informamos del error. En mi caso, no me complico y mando un único mensaje,
+    pero en otro caso, se podría hacer una lógica diferente.
      */
     override suspend fun getDogsApi(): List<DogModel> {
         val result = dogApiService.getAllDogsApiService()
