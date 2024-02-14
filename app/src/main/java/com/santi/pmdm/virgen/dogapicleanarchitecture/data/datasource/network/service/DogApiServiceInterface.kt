@@ -5,6 +5,7 @@ import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.network.mod
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 /*
@@ -18,11 +19,13 @@ Interfaz que define los servicios a nuestra API.
  */
 interface DogApiServiceInterface {
 
-    @GET("breed/list/all")
-    fun getAllDogsApi() : Response<DogsResponse>
+    //extensión de la url con list/all
+    @GET("list/all")
+    suspend fun getAllDogsApi() : Response<DogsResponse>
 
 
-    @GET("breed/{breed}/images")
-    fun getAllImagesApi(breed:String): Response<DogsBreedImagesResponse>
+    //hay que modificar parte de la url de manera dinámica y la suministramos mediante esta llamada al servicio.
+    @GET("{breed}/images")
+    suspend fun getAllImagesApi(@Path("breed") breed:String): Response<DogsBreedImagesResponse>
 
 }
