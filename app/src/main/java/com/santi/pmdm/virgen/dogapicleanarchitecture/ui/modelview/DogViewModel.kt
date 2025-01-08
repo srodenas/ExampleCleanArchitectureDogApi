@@ -1,11 +1,10 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.ui.modelview
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogRepository
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository.InMemoryDogRepository
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
 import kotlinx.coroutines.delay
@@ -38,7 +37,7 @@ class DogViewModel : ViewModel() {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
             delay(2000)
-            useCaseList = GetDogsUseCase(DogRepository())
+            useCaseList = GetDogsUseCase(InMemoryDogRepository())
             var data : List<Dog> ? = useCaseList()  //aquí se invoca y se obtienen los datos.
             data.let {
                 dogListLiveData.value = it  //notifico
@@ -56,7 +55,7 @@ class DogViewModel : ViewModel() {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
             delay(2000)
-            useCaseBreedList = GetDogsBreedUseCase(DogRepository(), breed)
+            useCaseBreedList = GetDogsBreedUseCase(InMemoryDogRepository(), breed)
             var data : List<Dog> ? = useCaseBreedList()  //aquí se invoca y se obtienen los datos.
             data.let {
                 dogListLiveData.value = it  //notifico

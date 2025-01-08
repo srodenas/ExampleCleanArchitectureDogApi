@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.santi.pmdm.virgen.dogapicleanarchitecture.databinding.ItemDogBinding
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 
 /*
 Se encargará de inicializar las vistas, elemento por elemento. Pondrá todos los datos que le pasa el adaptador.

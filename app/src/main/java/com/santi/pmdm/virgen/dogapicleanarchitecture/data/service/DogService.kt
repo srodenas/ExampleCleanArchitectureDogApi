@@ -1,11 +1,12 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.data.service
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.Dogs
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.service.DogServiceInterface
 
 /*
 Esta clase, simula el servicio de acceso a los datos nativos.
  */
-class DogService : DogServiceInterface{
+class DogService : DogServiceInterface {
     override fun getDogs(): List<Pair<String, String>> {
         return Dogs.dogs
     }

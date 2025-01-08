@@ -1,11 +1,11 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase
 
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogRepository
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository.InMemoryDogRepository
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 
-class GetDogsUseCase(private val dogRepository : DogRepository) {
+class GetDogsUseCase(private val inMemoryDogRepository : InMemoryDogRepository) {
 
     operator fun invoke(): List<Dog>?{
-        return dogRepository.getDogs()
+        return inMemoryDogRepository.getDogs()
     }
 }

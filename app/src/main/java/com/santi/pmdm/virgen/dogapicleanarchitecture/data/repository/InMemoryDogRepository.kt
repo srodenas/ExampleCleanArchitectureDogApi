@@ -1,8 +1,9 @@
-package com.santi.pmdm.virgen.dogapicleanarchitecture.data.models
+package com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository
 
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogsData
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.service.DogService
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Dog
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.model.Repository
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.repository.DogRepositoryInterface
 
 /*
 Clase que devuelve los datos, a partir de un acceso al servicio.
@@ -11,7 +12,7 @@ El servicio, devuelve los datos de forma nativa.
 Esta clase, se encargará de adaptar dichos datos a los que necesite
 la aplicación.
  */
-class DogRepository : DogRepositoryInterface{
+class InMemoryDogRepository : DogRepositoryInterface {
     private val service : DogService = DogService()
 
     /*
@@ -24,8 +25,8 @@ class DogRepository : DogRepositoryInterface{
         dataSource.forEach{ dog->
             mutableDogs.add(Dog(dog.first, dog.second))
         }
-        Repository.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
-        return Repository.dogs
+        DogsData.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
+        return DogsData.dogs
     }
 
     override fun getBreedDogs(breed: String): List<Dog> {
@@ -34,7 +35,7 @@ class DogRepository : DogRepositoryInterface{
         dataSource.forEach{ dog->
             mutableDogs.add(Dog(dog.first, dog.second))
         }
-        Repository.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
-        return Repository.dogs
+        DogsData.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
+        return DogsData.dogs
     }
 }
