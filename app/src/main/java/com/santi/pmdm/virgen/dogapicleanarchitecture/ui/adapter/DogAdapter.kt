@@ -33,7 +33,7 @@ class DogAdapter : RecyclerView.Adapter<ViewHDog>() {
      */
     override fun onBindViewHolder(holder: ViewHDog, position: Int) {
         //LO QUE HARÉ ES SETEAR LOS DATOS.
-        holder.rendereize(dogRepository.get(position), position)
+        holder.rendereize(dogRepository.get(position))
     }
 
     /*

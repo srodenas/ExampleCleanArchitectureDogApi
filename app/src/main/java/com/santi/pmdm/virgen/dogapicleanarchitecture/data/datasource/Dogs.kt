@@ -1,7 +1,10 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource
 
 /*
-Fuente de datos en memoria.
+1.-Fuente de datos en memoria.
+2.-Simulamos nuestros datos como una lista de Pair("raza", "url_imagen").
+La idea de este tipo de datos, es simular que la fuente de datos es totalmente diferente a los modelos con
+los que cuenta en dominio.
  */
 object Dogs{
     val dogs : List<Pair<String, String>> = listOf(

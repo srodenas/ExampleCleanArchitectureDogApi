@@ -7,8 +7,10 @@ import com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository.InMemoryDog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /*
 viewModelScope.launch, es la forma de crear una corrutinas. Son tareas
@@ -33,18 +35,46 @@ class DogViewModel : ViewModel() {
     lateinit var useCaseBreedList : GetDogsBreedUseCase
 
 
+    /*
+    Si no especificamos nada en el viewModelScop.launch{} todo se ejecuta en el hilo principal
+    Hasta que el bloque withContext no se complete, el flujo de ejecución se suspende, hasta que
+    no finalize la consulta de datos en otro hilo.
+     */
     fun list() {
-        viewModelScope.launch {
+        viewModelScope.launch {  //Se destruye al eliminarse el ViewModel
             progressBarLiveData.value = true //notifico
             delay(2000)
-            useCaseList = GetDogsUseCase(InMemoryDogRepository())
-            var data : List<Dog> ? = useCaseList()  //aquí se invoca y se obtienen los datos.
-            data.let {
-                dogListLiveData.value = it  //notifico
-                progressBarLiveData.value = false  //notifico
+            var data : List<Dog>?
+            withContext(Dispatchers.IO){
+                useCaseList = GetDogsUseCase(InMemoryDogRepository())
+                data  = useCaseList()  //aquí se invoca y se obtienen los datos.
+            }
+            //Se suspende este flujo, a la espera de la operación asíncrona en otro hilo.
+            //La UI puede seguir trabajando sin problemas.
+            if (data !=null )
+                dogListLiveData.value = data!!  //notifico
+            progressBarLiveData.value = false  //notifico
+        }
+    }
+
+
+    fun list1() {
+        viewModelScope.launch {  //Se destruye al eliminarse el ViewModel
+            progressBarLiveData.value = true //notifico
+            delay(2000)
+            var data : List<Dog>?
+            withContext(Dispatchers.IO){
+                useCaseList = GetDogsUseCase(InMemoryDogRepository())
+                data  = useCaseList()  //aquí se invoca y se obtienen los datos.
+                if (data !=null )
+                    dogListLiveData.postValue(data!!)  //notifico
+                progressBarLiveData.postValue(false)
             }
         }
     }
+
+
+
 
      fun searchByBreed(breed: String){
          //Log.i("TAG-DOGS", "La raza elegida es $breed")
@@ -55,12 +85,16 @@ class DogViewModel : ViewModel() {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
             delay(2000)
-            useCaseBreedList = GetDogsBreedUseCase(InMemoryDogRepository(), breed)
-            var data : List<Dog> ? = useCaseBreedList()  //aquí se invoca y se obtienen los datos.
-            data.let {
-                dogListLiveData.value = it  //notifico
-                progressBarLiveData.value = false  //notifico
+            var data : List<Dog>?
+            withContext(Dispatchers.IO){
+                useCaseBreedList = GetDogsBreedUseCase(InMemoryDogRepository(), breed)
+                data = useCaseBreedList()  //aquí se invoca y se obtienen los datos.
             }
+
+            if (data != null)
+                dogListLiveData.value = data!!  //notifico
+            progressBarLiveData.value = false  //notifico
+
         }
     }
 

@@ -21,7 +21,7 @@ class ViewHDog(view: View) : RecyclerView.ViewHolder(view){
     /*
     Métdo que se encara de mapear los item por propiedad del modelo.
      */
-    fun rendereize(get: Dog, position: Int) {
+    fun rendereize(get: Dog) {
         Glide
             .with(itemView.context)
             .load(get.image)

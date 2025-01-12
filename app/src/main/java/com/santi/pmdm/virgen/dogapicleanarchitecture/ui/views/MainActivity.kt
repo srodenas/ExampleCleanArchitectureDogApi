@@ -72,7 +72,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             this, { bread->
                 dogViewModel.listForBreed(bread)  //cambiamos los datos.
                 hideKeyBoard()
-
             }
         )
     }
