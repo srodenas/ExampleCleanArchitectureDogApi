@@ -9,7 +9,7 @@ class TestApi {
 
     companion object {
 
-         fun testDogApi() {
+        /* fun testDogApi() {
              var useCase = GetDogsUseCase(InMemoryDogRepository())
              var useCaseBreed = GetDogsBreedUseCase(InMemoryDogRepository(),"raza1")
              val listDogs = useCaseBreed() //invoca a su método definido como operator fun invoke()
@@ -19,5 +19,7 @@ class TestApi {
              }
 
         }
+
+         */
     }
 }

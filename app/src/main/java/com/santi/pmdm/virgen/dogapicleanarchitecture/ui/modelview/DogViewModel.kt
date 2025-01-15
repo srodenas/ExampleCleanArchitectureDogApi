@@ -41,7 +41,7 @@ class DogViewModel : ViewModel() {
     fun list() {
         viewModelScope.launch {  //Se destruye al eliminarse el ViewModel
             progressBarLiveData.value = true //notifico
-            delay(2000)
+           // delay(2000)
             var data : List<Dog>?
             withContext(Dispatchers.IO){
                 useCaseList = GetDogsUseCase(InMemoryDogRepository())
@@ -59,7 +59,7 @@ class DogViewModel : ViewModel() {
     fun list1() {
         viewModelScope.launch {  //Se destruye al eliminarse el ViewModel
             progressBarLiveData.value = true //notifico
-            delay(2000)
+           // delay(2000)
             var data : List<Dog>?
             withContext(Dispatchers.IO){
                 useCaseList = GetDogsUseCase(InMemoryDogRepository())
@@ -82,7 +82,7 @@ class DogViewModel : ViewModel() {
     fun listForBreed(breed: String) {
         viewModelScope.launch {
             progressBarLiveData.value = true //notifico
-            delay(2000)
+           // delay(2000)
             var data : List<Dog>?
             withContext(Dispatchers.IO){
                 useCaseBreedList = GetDogsBreedUseCase(InMemoryDogRepository(), breed)

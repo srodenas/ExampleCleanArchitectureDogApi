@@ -1,6 +1,7 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.data.service
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.Dogs
+import kotlinx.coroutines.delay
 
 
 /*
@@ -9,14 +10,16 @@ import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.Dogs
     3.- Clase que devuelve la lista de Dogs por raza (simulamos el acceso a la api por raza)
  */
 class DogService  {
-   fun getDogs(): List<Pair<String, String>> {
-        return Dogs.dogs
+   suspend fun getDogs(): List<Pair<String, String>> {
+       delay(1000)  // Simulando un retardo de red (como si estuviera esperando una respuesta de la API)
+       return Dogs.dogs
     }
 
     /*
     Aquí, estoy filtrando por raza. Simulo un acceso por filtro.
      */
-   fun getBreedDogs(breed: String): List<Pair<String,String>> {
+   suspend fun getBreedDogs(breed: String): List<Pair<String,String>> {
+        delay(1000)
         val newDogs = Dogs.dogs.filter {
             it.first.equals(breed)
         }

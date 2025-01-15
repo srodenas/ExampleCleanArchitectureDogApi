@@ -119,6 +119,6 @@ Método que cierra el teclado. MUY INTERESANTE...
     }
 
     private fun test() {
-        TestApi.testDogApi()
+      //  TestApi.testDogApi()
     }
 }

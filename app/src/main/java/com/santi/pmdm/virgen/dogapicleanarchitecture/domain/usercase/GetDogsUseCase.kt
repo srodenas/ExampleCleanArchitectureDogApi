@@ -5,7 +5,7 @@ import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 
 class GetDogsUseCase(private val inMemoryDogRepository : InMemoryDogRepository) {
 
-    operator fun invoke(): List<Dog>?{
+    suspend operator fun invoke(): List<Dog>?{
         return inMemoryDogRepository.getDogs()
     }
 }

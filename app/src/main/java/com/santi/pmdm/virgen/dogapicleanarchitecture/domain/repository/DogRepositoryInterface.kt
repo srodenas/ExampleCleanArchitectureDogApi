@@ -7,6 +7,6 @@ Contrato que deberán adquirir las clases Repository dependiendo del tipo de acc
 //Desacoplamiento.
  */
 interface DogRepositoryInterface {
-    fun getDogs() : List<Dog>   //deberá devolver una lista de Dog (dominio)
-    fun getBreedDogs(breed:String) : List<Dog>  //deberá devolver una lista por raza de Dog (dominio)
+    suspend fun getDogs() : List<Dog>   //deberá devolver una lista de Dog (dominio)
+    suspend fun getBreedDogs(breed:String) : List<Dog>  //deberá devolver una lista por raza de Dog (dominio)
 }

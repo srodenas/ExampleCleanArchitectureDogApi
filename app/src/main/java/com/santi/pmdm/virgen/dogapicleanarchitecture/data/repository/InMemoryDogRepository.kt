@@ -19,7 +19,7 @@ class InMemoryDogRepository : DogRepositoryInterface {
     Método que a partir de los datos nativos, devuelve la lista
     de objetos que necesita el modelo.
      */
-    override fun getDogs(): List<Dog> {
+   override  suspend fun getDogs(): List<Dog> {
         var mutableDogs : MutableList<Dog> = mutableListOf()
         val dataSource = service.getDogs()  //aquí tenemos la lista de Dog nativos. Pair.
         dataSource.forEach{ dogPair->
@@ -32,7 +32,7 @@ class InMemoryDogRepository : DogRepositoryInterface {
     /*
     Cargo todos los datos filtrados por raza, desde nuestra lista Pair (datos nativos) a memoria.
      */
-    override fun getBreedDogs(breed: String): List<Dog> {
+    override suspend fun getBreedDogs(breed: String): List<Dog> {
         var mutableDogs : MutableList<Dog> = mutableListOf()
         val dataSource = service.getBreedDogs(breed)
         dataSource.forEach{ dogPair->

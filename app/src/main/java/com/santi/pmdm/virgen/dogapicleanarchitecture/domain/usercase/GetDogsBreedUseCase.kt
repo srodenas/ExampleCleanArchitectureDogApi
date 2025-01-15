@@ -10,7 +10,7 @@ Invoca al repositorio de datos, por filtro.
 class GetDogsBreedUseCase(val inMemoryDogRepository : InMemoryDogRepository,
                           val breed: String) {
 
-    operator fun invoke() : List<Dog>{
+    suspend operator fun invoke() : List<Dog>{
         return inMemoryDogRepository.getBreedDogs(breed)
     }
 
