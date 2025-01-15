@@ -25,8 +25,6 @@ Será totalmente necesarias utilizar las corrutinas, en operaciones de datos
 por internet.
  */
 class DogViewModel : ViewModel() {
-
-
     var dogListLiveData = MutableLiveData<List<Dog>>() //repositorio observable
     var progressBarLiveData = MutableLiveData<Boolean> () //progressbar observable
     var search = MutableLiveData<String>() //para el campo search

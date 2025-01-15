@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.santi.pmdm.virgen.dogapicleanarchitecture.R
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogsData
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogsData
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 
 

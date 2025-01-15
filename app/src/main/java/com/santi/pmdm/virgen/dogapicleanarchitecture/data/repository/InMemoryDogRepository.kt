@@ -1,6 +1,6 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository
 
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.models.DogsData
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogsData
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.service.DogService
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.repository.DogRepositoryInterface

@@ -1,4 +1,4 @@
-package com.santi.pmdm.virgen.dogapicleanarchitecture.data.models
+package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 
