@@ -8,7 +8,6 @@ import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsBreedUseCase
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase.GetDogsUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -16,10 +15,7 @@ import kotlinx.coroutines.withContext
 viewModelScope.launch, es la forma de crear una corrutinas. Son tareas
 que se hacen en segundo plano, cuando requieren de operaciones asíncronas.
 Es conveniente utilizarlas, para no bloquear a la aplicación. En este ejemplo,
-no es necesario, ya que simulamos un acceso a memoria. Como queremos utilizar un
-progressbar por un tiempo, no tengo mas remedio que lanzarlo como si fuera una
-operación asíncrona. De esta forma, la operación se duerme durante un tiempo
-mientras la interfaz va funcionando por otro lado.
+no es necesario, ya que simulamos un acceso a memoria.
 
 Será totalmente necesarias utilizar las corrutinas, en operaciones de datos
 por internet.
@@ -28,15 +24,19 @@ class DogViewModel : ViewModel() {
     var dogListLiveData = MutableLiveData<List<Dog>>() //repositorio observable
     var progressBarLiveData = MutableLiveData<Boolean> () //progressbar observable
     var search = MutableLiveData<String>() //para el campo search
-
-    lateinit var useCaseList : GetDogsUseCase
-    lateinit var useCaseBreedList : GetDogsBreedUseCase
+    val repository = InMemoryDogRepository()
+    val useCaseList = GetDogsUseCase( repository)
+    val useCaseBreedList =  GetDogsBreedUseCase(repository)
 
 
     /*
-    Si no especificamos nada en el viewModelScop.launch{} todo se ejecuta en el hilo principal
-    Hasta que el bloque withContext no se complete, el flujo de ejecución se suspende, hasta que
-    no finalize la consulta de datos en otro hilo.
+    Un viewModelScopy.launch, lanza una nueva corrutina ejecutándose en el contexto
+    del viewModelScope  --> hilo principal. De esa manera, facilita sin problemas la actualización
+    de la IU.
+
+    Cuando se hace un withContext dentro de una corrutina, lo que hacemos es realizar un cambio
+    de contexto y hasta que ese bloque dentro del sitchContext no se complete, la corrutina permanece
+    bloqueada, pero deja al hilo totalmente libre para que la UI sigua trabajando sin problemas.
      */
     fun list() {
         viewModelScope.launch {  //Se destruye al eliminarse el ViewModel
@@ -44,7 +44,6 @@ class DogViewModel : ViewModel() {
            // delay(2000)
             var data : List<Dog>?
             withContext(Dispatchers.IO){
-                useCaseList = GetDogsUseCase(InMemoryDogRepository())
                 data  = useCaseList()  //aquí se invoca y se obtienen los datos.
             }
             //Se suspende este flujo, a la espera de la operación asíncrona en otro hilo.
@@ -56,13 +55,13 @@ class DogViewModel : ViewModel() {
     }
 
 
+    //otra forma de implementar la función anterior.
     fun list1() {
         viewModelScope.launch {  //Se destruye al eliminarse el ViewModel
             progressBarLiveData.value = true //notifico
            // delay(2000)
             var data : List<Dog>?
             withContext(Dispatchers.IO){
-                useCaseList = GetDogsUseCase(InMemoryDogRepository())
                 data  = useCaseList()  //aquí se invoca y se obtienen los datos.
                 if (data !=null )
                     dogListLiveData.postValue(data!!)  //notifico
@@ -85,10 +84,9 @@ class DogViewModel : ViewModel() {
            // delay(2000)
             var data : List<Dog>?
             withContext(Dispatchers.IO){
-                useCaseBreedList = GetDogsBreedUseCase(InMemoryDogRepository(), breed)
+                useCaseBreedList.breed = breed
                 data = useCaseBreedList()  //aquí se invoca y se obtienen los datos.
             }
-
             if (data != null)
                 dogListLiveData.value = data!!  //notifico
             progressBarLiveData.value = false  //notifico
