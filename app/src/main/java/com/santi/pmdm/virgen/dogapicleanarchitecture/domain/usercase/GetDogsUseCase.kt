@@ -21,8 +21,6 @@ a partir de nuestra otra fuentes de datos.
 class GetDogsUseCase @Inject constructor(
     private val dogRepositoryDao: DogRepository
 ) {
-
-   // private val dogRepository = DogRepository()
     suspend operator fun invoke(): List<Dog>?{
        Repository.dogs = dogRepositoryDao.getDogsEntity()  //Aquí tengo los datos.
 
