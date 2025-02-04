@@ -1,8 +1,7 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.entities.DogEntity
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogRepository
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository.DogRepository
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.mapper.toDomain
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogModel
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Repository
