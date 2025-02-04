@@ -35,21 +35,21 @@ Si el parámetro database lo crea Hilt, porqué no le ponemos la anotación @Iny
 @Email srodher115@g.educaand.es
 */
 
-@Module
-@InstallIn(SingletonComponent::class)
+@Module  //Hilt, que este object contiene métodos de cómo crear dependencias, ehhhhhh
+@InstallIn(SingletonComponent::class)  //Hilt, que estos objetos duren hasta el cierre de la app.
 object RoomModule {
 
     private const val NAME_DATABASE = "database_dogs"
 
-    //Nos devuelve una instancia a la BBDD. Hilt provee en un singleton, la conexión a la BBDD.
-    @Singleton
-    @Provides
+
+    @Singleton   //Hilt, que quiero que me crees una sola instancia, por eso te digo que es singleton.
+    @Provides   //Hilt, que quiero darte información a cómo instanciar DatabaseDogs
     fun provideRoom(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, DatabaseDogs::class.java, NAME_DATABASE).build()
 
 
-    //Nos devuelve el Dao. Hilt provee en un singleton, el Dao.
-    @Singleton
-    @Provides
+
+    @Singleton  //Hilt, que quiero que me crees una sola instancia, por eso te digo que es singleton.
+    @Provides   //Hilt, que quiero darte información a cómo debes instanciar el dao.
     fun provideDao(database: DatabaseDogs) = database.dogDao()
 }

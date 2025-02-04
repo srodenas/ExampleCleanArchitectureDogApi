@@ -1,7 +1,8 @@
-package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem
+package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models
 
 /*
 Fuente de datos en memoria.
+Nuestro modelo de datos es de tipo Pair<String,String>
  */
 object Dogs{
     val dogs : List<Pair<String, String>> = listOf(

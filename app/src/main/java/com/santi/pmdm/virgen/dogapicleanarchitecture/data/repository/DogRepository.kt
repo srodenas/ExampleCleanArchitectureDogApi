@@ -3,6 +3,7 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.dao.DogDao
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.entities.DogEntity
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.service.DogService
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.mapper.toDog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.mapper.toDogEntity
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Repository
@@ -10,14 +11,11 @@ import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.repository.DogReposi
 import javax.inject.Inject
 
 /*
-Clase que devuelve los datos, a partir de un acceso al servicio.
-El servicio, devuelve los datos de forma nativa.
+Repositorio con todos los métodos de acceso a los datos.
+1.- De forma nativa.
+2.- De forma BBDD con Room
+3.- Hilt, nos proporcionará tanto el Servicio para forma nativa, como el dao DogDao.
 
-Esta clase, se encargará de adaptar dichos datos a los que necesite
-la aplicación.
-
-Para Room
-1.- Añadimos la dependencia del dao.
  */
 
 
@@ -32,32 +30,38 @@ class DogRepository @Inject constructor(
     de objetos que necesita el modelo.
      */
     override fun getDogs(): List<Dog> {
-        var mutableDogs : MutableList<Dog> = mutableListOf()
         val dataSource = service.getDogs()
-       // var id: Int = 0
+
+        Repository.dogs = dataSource.map { it.toDog() }
+        return Repository.dogs
+
+        /*
         dataSource.forEach{ dog->
             mutableDogs.add(Dog(dog.first, dog.second))
-        //    id++
         }
         Repository.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
         return Repository.dogs
+         */
     }
 
     override fun getBreedDogs(breed: String): List<Dog> {
-        var mutableDogs : MutableList<Dog> = mutableListOf()
         val dataSource = service.getBreedDogs(breed)
 
+        Repository.dogs = dataSource.map { it.toDog() }
+        return Repository.dogs
+        /*
         dataSource.forEach{ dog->
             mutableDogs.add(Dog(dog.first, dog.second))
 
         }
         Repository.dogs = mutableDogs //AQUÍ CARGO LOS DATOS EN MEMORIA.
         return Repository.dogs
+         */
     }
 
     override suspend fun getDogsEntity(): List<Dog> {
         val listEntity : List<DogEntity> = dogDao.getAll()  //aquí tengo todos los datos Dog
-        Repository.dogs = listEntity.map { it.toDogEntity()}  //convertimos a DogModel (dominio) y lo cargamos en memoria
+        Repository.dogs = listEntity.map { it.toDogEntity()}  //convertimos a Dog (dominio) y lo cargamos en memoria
        return Repository.dogs
 
     }

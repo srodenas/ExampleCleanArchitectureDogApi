@@ -1,6 +1,6 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.service
 
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.Dogs
+import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dogs
 import javax.inject.Inject
 
 /*
