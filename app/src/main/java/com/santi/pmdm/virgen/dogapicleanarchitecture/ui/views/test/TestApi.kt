@@ -18,7 +18,6 @@ class TestApi @Inject constructor(
 
 
     suspend fun testDogApi() {
-
         var listDogs: List<DogModel>? = useCaseList()  //aquí se invoca y se obtienen los datos.
             listDogs?.forEach() {
                 Log.i("TAG-DOGS", it.image)

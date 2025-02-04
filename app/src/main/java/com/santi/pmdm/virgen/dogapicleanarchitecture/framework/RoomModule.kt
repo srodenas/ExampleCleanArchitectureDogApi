@@ -29,6 +29,10 @@ Si el parámetro database lo crea Hilt, porqué no le ponemos la anotación @Iny
 Por otra parte, @Inyect se utiliza en constructores....
 */
 
+/*
+@Author santi
+@Email srodher115@g.educaand.es
+*/
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -36,17 +40,15 @@ object RoomModule {
 
     private const val NAME_DATABASE = "database_dogs"
 
-    //Nos devuelve una instancia de Room
+    //Nos devuelve una instancia a la BBDD. Hilt provee en un singleton, la conexión a la BBDD.
     @Singleton
     @Provides
     fun provideRoom(@ApplicationContext context: Context) =
         Room.databaseBuilder(context, DatabaseDogs::class.java, NAME_DATABASE).build()
 
 
-    //Nos devuelve una instancia de la Base de datos.
+    //Nos devuelve el Dao. Hilt provee en un singleton, el Dao.
     @Singleton
     @Provides
     fun provideDao(database: DatabaseDogs) = database.dogDao()
-
-
 }
