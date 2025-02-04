@@ -7,6 +7,6 @@ Puesto que no vamos a modificarlo, no es necesario un MutableList.
  */
 class Repository {
     companion object{
-        var dogs:List<DogModel> = emptyList()
+        var dogs:List<Dog> = emptyList()
     }
 }

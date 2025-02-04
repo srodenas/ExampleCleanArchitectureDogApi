@@ -9,7 +9,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pmdm.virgen.dogapi.test.TestApi
 import com.pmdm.virgen.dogapi.ui.adapter.DogAdapter
 import com.santi.pmdm.virgen.dogapicleanarchitecture.R
 import com.santi.pmdm.virgen.dogapicleanarchitecture.databinding.ActivityMainBinding
@@ -63,7 +62,7 @@ Como recuerdo, Room nos implementa todo método abstracto que definimos en la in
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
-    @Inject lateinit var testApi: TestApi
+    //@Inject lateinit var testApi: TestApi
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: DogAdapter
     val dogViewModel: DogViewModel by viewModels() //tiene que ser constante.
@@ -171,10 +170,12 @@ Método que cierra el teclado. MUY INTERESANTE...
         imn.hideSoftInputFromWindow(binding.myLayoutPpal.windowToken, 0)
     }
 
-    private fun test() {
+   /* private fun test() {
         lifecycleScope.launch{
             testApi.testDogApi()
         }
 
     }
+
+    */
 }

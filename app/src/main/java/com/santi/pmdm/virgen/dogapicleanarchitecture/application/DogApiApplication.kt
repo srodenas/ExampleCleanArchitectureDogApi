@@ -1,7 +1,6 @@
 package com.santi.pmdm.virgen.dogapicleanarchitecture.application
 
 import android.app.Application
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.DatabaseDogs
 import dagger.hilt.android.HiltAndroidApp
 
 /*

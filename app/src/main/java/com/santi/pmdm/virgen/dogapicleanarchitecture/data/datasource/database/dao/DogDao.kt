@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.entities.DogEntity
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
 
 /*
 Lo chulo de Room, es que a nivel de App, nosotros trabajamos con objetos, no con los recordSet que nos puede proporcionar

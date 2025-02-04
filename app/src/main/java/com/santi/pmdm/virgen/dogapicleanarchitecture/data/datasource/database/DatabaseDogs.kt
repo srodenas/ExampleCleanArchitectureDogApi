@@ -2,7 +2,6 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.dao.DogDao
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.entities.DogEntity
 

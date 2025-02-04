@@ -2,8 +2,8 @@ package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.usercase
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.entities.DogEntity
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository.DogRepository
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.mapper.toDomain
-import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogModel
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.mapper.toDogEntity
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Dog
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Repository
 import javax.inject.Inject
 
@@ -23,7 +23,7 @@ class GetDogsUseCase @Inject constructor(
 ) {
 
    // private val dogRepository = DogRepository()
-    suspend operator fun invoke(): List<DogModel>?{
+    suspend operator fun invoke(): List<Dog>?{
        Repository.dogs = dogRepositoryDao.getDogsEntity()  //Aquí tengo los datos.
 
        /*
@@ -36,7 +36,7 @@ class GetDogsUseCase @Inject constructor(
        if (Repository.dogs.isEmpty()){
 
            Repository.dogs = dogRepositoryDao.getDogs() //Aquí tengo los datos de memoria.
-           val dataDogEntity : List<DogEntity> = Repository.dogs.map { it.toDomain() }  //lo mapeamos a Entity.
+           val dataDogEntity : List<DogEntity> = Repository.dogs.map { it.toDogEntity() }  //lo mapeamos a Entity.
            dogRepositoryDao.insertBreedEntitytoDatabase(dataDogEntity)
        }
        return Repository.dogs
