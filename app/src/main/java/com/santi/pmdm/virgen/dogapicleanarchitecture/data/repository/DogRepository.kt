@@ -1,9 +1,12 @@
-package com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models
+package com.santi.pmdm.virgen.dogapicleanarchitecture.data.repository
 
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.dao.DogDao
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.database.entities.DogEntity
 import com.santi.pmdm.virgen.dogapicleanarchitecture.data.datasource.mem.service.DogService
 import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.mapper.toDomain
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.DogModel
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.models.Repository
+import com.santi.pmdm.virgen.dogapicleanarchitecture.domain.repository.DogRepositoryInterface
 import javax.inject.Inject
 
 /*

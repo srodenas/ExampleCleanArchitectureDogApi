@@ -25,6 +25,10 @@ que es donde tendremos los métodos dao con la BBDD. Una pregunta que podemos ha
 Si el parámetro database lo crea Hilt, porqué no le ponemos la anotación @Inyect? @Inyect se utiliza en constructores....
 */
 
+/*
+@Author santi
+@Email srodher115@g.educaand.es
+*/
 
 /*
 @Author santi

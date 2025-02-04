@@ -5,6 +5,7 @@ import javax.inject.Inject
 
 /*
 Esta clase, simula el servicio de acceso a los datos nativos.
+IMAGINAMOS QUE PAIR, SERÍA LO MÁS PARECIDO A UN REGISTRO DE LA BASE DE DATOS.
  */
 
 class DogService @Inject constructor(): DogServiceInterface {
